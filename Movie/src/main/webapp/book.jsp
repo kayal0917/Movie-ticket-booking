@@ -61,7 +61,40 @@ body {
 <body>
 <div class="booking-form">
   <h3 id="book">Book Your Ticket</h3>
-  <form action="Bookingservlet" method="get">
+  <% 
+        // Retrieving selected seat IDs and count from request parameters
+        String selectedSeats = request.getParameter("selectedSeats");
+  int selectedSeatsCount = Integer.parseInt(request.getParameter("selectedSeatsCount"));
+        
+        // Processing selected seats
+        if (selectedSeats != null && !selectedSeats.isEmpty()) {
+            String[] seatIds = selectedSeats.split(",");
+            out.println("<p>You have selected " + selectedSeatsCount + " seat(s):</p>");
+            out.println("<ul>");
+            for (String seatId : seatIds) {
+                out.println("<li>" + seatId + "</li>");
+            }
+            out.println("</ul>");
+        } else {
+            out.println("<p>No seats were selected.</p>");
+        }
+        
+    %>
+      <form action="Bookingservlet" method="post">
+        <div class="form-group">
+              <label for="seat"> seats:</label>
+        
+       <input type=" " id="seat" name="seat" value="<%=selectedSeats%>" />
+       </div>
+         <div class="form-group">
+        <label for="seat"> seat count:</label>
+ <input type=" " id="seatCount" name="seatCount" value="<%=selectedSeatsCount%>" />
+    </div>
+     <!--   <div class="form-group">
+      <label for="seat"> seats:</label>
+      
+      <input type="seat" id="seat" name="seat" class="form-control" required />
+    </div> -->
   <div class="form-group">
       <label for="screen">Screen:</label>
       <select id="screen" name="screen" class="form-control" required>
@@ -79,10 +112,10 @@ body {
         <option value="oppenheimer">Oppenheimer</option>
       </select>
     </div>
-    <div class="form-group">
+  <!-- <!--   <div class="form-group">
       <label for="ticket">No of Tickets:</label>
       <input type="number" id="ticket" name="ticketno" class="form-control" min="1" max="6" placeholder="No of tickets" required />
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="showDate">Date:</label>
       <input type="date" id="date" name="showDate" class="form-control" min="2024-06-01" max="2024-06-31" required />
@@ -112,4 +145,21 @@ body {
   </form>
 </div>
 </body>
+<script>
+// JavaScript to populate the seat input field and set the seat count
+window.onload = function() {
+    const seatInput = document.getElementById('seat');
+    const seatCountInput = document.getElementById('seatCount');
+    
+    // Get selected seat IDs and count from hidden inputs
+    const selectedSeats = seatInput.value;
+    const selectedSeatsCount = seatCountInput.value;
+    
+    // If there are selected seats, populate the input field and set the count
+    if (selectedSeats) {
+        seatInput.value = selectedSeats;
+        seatCountInput.value = selectedSeatsCount;
+    }
+};
+</script>
 </html>

@@ -49,23 +49,19 @@ public class Signinservlet extends HttpServlet {
 		        String storedPassword = ImpMovie.checkPassword(username);
 
 		        if (password.equals(storedPassword)) {
-		            // Create a session or retrieve an existing session
 		            HttpSession session = request.getSession(false);
 
-		            // Set session attributes
 		            session.setAttribute("username", username);
 
-		            // Redirect to the index page
 		            response.sendRedirect("index.jsp");
 		            System.out.println(username);
 		        } else {
-		            // Redirect to the sign-in page if authentication fails
 		            response.sendRedirect("signinmovie.jsp");
 		        }
 		    } catch (Exception e) {
 		        e.printStackTrace();
-		        // Handle other exceptions if necessary
-		    }
+ 
+		  }
 		
 
 	}

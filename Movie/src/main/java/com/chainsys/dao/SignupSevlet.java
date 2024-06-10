@@ -54,7 +54,7 @@ public class SignupSevlet extends HttpServlet {
         details.setPassword(password);
         try {
         	imp.Signupsevlet(details);
-        	response.sendRedirect("signinmovie.html");
+        	response.sendRedirect("signinmovie.jsp");
         }catch (Exception e) {
 			// TODO: handle exception
         	e.printStackTrace();

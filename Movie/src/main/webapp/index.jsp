@@ -102,7 +102,7 @@
     <ul class="nav-links">
         <li><a href="index.jsp">Home</a></li>
         </li>
-        <li><a href="book.jsp">Booking</a></li>
+        <li><a href="seat.jsp">Booking</a></li>
         <li><a href="contact.jsp">Contact Us</a></li>
         <li><a class="btn" href="signupmovie.jsp">Sign up</a></li>
         <li><a class="btn" href="signinmovie.jsp">Sign in</a></li>
@@ -113,13 +113,13 @@
     <h3 class="mt-5">Recommended Movies</h3>
     <div class="movie-list">
         <div class="movie-item">
-            <a href="brama.jpg"><img class="movie-image" src="brama.jpg" alt="brama"></a>
+            <a href="brama.jsp"><img class="movie-image" src="brama.jpg" alt="brama"></a>
         </div>
         <div class="movie-item">
-            <a href="godzi.jpg"><img class="movie-image" src="godzi.jpg" alt="godzi"></a>
+            <a href="minusone.jsp"><img class="movie-image" src="godzi.jpg" alt="godzi"></a>
         </div>
         <div class="movie-item">
-                <a href="oppen.jpg"><img class="movie-image" src="oppen.jpg" alt="oppen">
+                <a href="oppen.jsp"><img class="movie-image" src="oppen.jpg" alt="oppen">
         </div>
     </div>
 </div>

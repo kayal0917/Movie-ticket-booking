@@ -99,31 +99,24 @@ public class ImpMovie implements InterMovie {
 	public void booking(Bookpojo add1) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		Connection con = MovieConnection.getConnection();
-		String add = "insert into bookings(user_name,screen,movie,num_tickets,booking_date,booking_time,theater,seat)values(?,?,?,?,?,?,?,?)";
+		String add = "insert into bookings(user_name,seats,seat_count,screen,movie,booking_date,booking_time,theater)values(?,?,?,?,?,?,?,?)";
 		System.out.println(add1.getScreen());
+		System.out.println(add1.getSeat());
 		PreparedStatement ps = con.prepareStatement(add);
 		ps.setString(1, add1.getUsername());
-		ps.setString(2, add1.getScreen());
-		ps.setString(3, add1.getMovie());
-		ps.setInt(4, add1.getTicketno());
-		ps.setString(5, add1.getShowDate());
-		ps.setString(6, add1.getShowtime());
-		ps.setString(7, add1.getTheater());
-		ps.setString(8, add1.getSeat());
-
-
-
+		ps.setString(2, add1.getSeat());
+		ps.setString(3, add1.getSeatcount());
+		ps.setString(4, add1.getScreen());
+		ps.setString(5, add1.getMovie());
+		ps.setString(6, add1.getShowDate());
+		ps.setString(7, add1.getShowtime());
+		ps.setString(8, add1.getTheater());
 		int rows = ps.executeUpdate();
 		System.out.println(rows + " rows inserted");
 	}
-
 	@Override
-	public void Update() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+	public void Update() throws ClassNotFoundException, SQLException {	
 	}
-	
-
 //	public void update(String username,String password) throws ClassNotFoundException, SQLException {
 //		Connection con = MovieConnection.getConnection();
 //		String update = "UPDATE users SET password = ? WHERE user_name = ?";

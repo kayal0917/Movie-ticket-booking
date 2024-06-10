@@ -11,6 +11,13 @@ public class Bookpojo {
     String screen;
     String seat;
     String showDate;
+    public String getSeatcount() {
+		return seatcount;
+	}
+	public void setSeatcount(String seatcount) {
+		this.seatcount = seatcount;
+	}
+	String seatcount;
 	public String getUsername() {
 		return username;
 	}

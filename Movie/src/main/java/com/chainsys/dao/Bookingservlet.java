@@ -35,7 +35,6 @@ public class Bookingservlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         if (session != null) {
             String movie;
@@ -44,36 +43,36 @@ public class Bookingservlet extends HttpServlet {
             String theater;
             String screen;
             String seat;
-            String username = (String) session.getAttribute("username");
-            System.out.println(username);
-            
-            book.setUsername(username);
-            screen = request.getParameter("screen");
-            System.out.println(screen);
+        	String seatcount;
 
+            String username = (String) session.getAttribute("username");
+            System.out.println(username);            
+            book.setUsername(username);
+            seat = request.getParameter("seat");
+            book.setSeat(seat);
+            seatcount = request.getParameter("seatCount");
+//            book.setSeat(seatcount);
+            book.setSeatcount(seatcount);
+            screen = request.getParameter("screen");
             book.setScreen(screen);
             movie = request.getParameter("movie");
             book.setMovie(movie);
-           int  ticketno =Integer.parseInt( request.getParameter("ticketno"));
-            book.setTicketno(ticketno);
             showdate = request.getParameter("showDate");
             System.out.println(showdate);
             book.setShowDate(showdate);
-
             showtime = request.getParameter("showtime");
             book.setShowtime(showtime);
             theater = request.getParameter("theater");
             book.setTheater(theater);
-            seat = request.getParameter("seat");
-            book.setSeat(seat);
+            
             try {
                 imp.booking(book);
-                response.sendRedirect("seat.jsp");
+                response.sendRedirect("index.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            response.sendRedirect("book.jsp");
+            response.sendRedirect("seat.jsp");
         }
     }
 
