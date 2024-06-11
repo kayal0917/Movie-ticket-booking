@@ -13,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 
 import com.chainsys.model.Bookpojo;
 import com.chainsys.model.MoviePojo;
+import com.chainsys.model.Theaterpojo;
 import com.chainsys.util.MovieConnection;
 
 
@@ -129,5 +130,44 @@ public class ImpMovie implements InterMovie {
 //
 //		ps.close();
 //	}
+	public void Signupsevlet(Theaterpojo theater) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		System.out.println(theater.getTheatername());
+		Connection con = MovieConnection.getConnection();
+		String add = "insert into theater(theater_id,theater_name,location)values(?,?,?)";
+		PreparedStatement ps = con.prepareStatement(add);
+		ps.setInt(1, theater.getTheaterid());
+		ps.setString(2, theater.getTheatername());
+
+		ps.setString(3, theater.getLocation());
+
+		int rows = ps.executeUpdate();
+		System.out.println(rows + " rows inserted");
+	}
+
+	public List<Theaterpojo> retriveTheater() throws ClassNotFoundException, SQLException 
+    {
+        List<Theaterpojo> list=new ArrayList<>();
+        Connection connection=MovieConnection.getConnection();
+        String select="select  theater_id,theater_name,location from theater";
+        PreparedStatement prepareStatement=connection.prepareStatement(select);
+        ResultSet resultSet=prepareStatement.executeQuery();
+        while(resultSet.next())
+        {
+        	int theaterid=resultSet.getInt(1);
+            String theatername=resultSet.getString(2);
+            String location=resultSet.getString(3);
+            Theaterpojo theater=new Theaterpojo();
+            theater.setTheaterid(theaterid);
+            theater.setTheatername(theatername);
+            theater.setLocation(location);
+            list.add(theater);
+			/*
+			 * 
+			 */        }
+//        connection.close();
+        return list;
+    }
+
 
 }

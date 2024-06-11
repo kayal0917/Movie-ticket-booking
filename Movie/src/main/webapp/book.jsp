@@ -154,9 +154,7 @@ window.onload = function() {
     // Get selected seat IDs and count from hidden inputs
     const selectedSeats = seatInput.value;
     const selectedSeatsCount = seatCountInput.value;
-    
-    // If there are selected seats, populate the input field and set the count
-    if (selectedSeats) {
+        if (selectedSeats) {
         seatInput.value = selectedSeats;
         seatCountInput.value = selectedSeatsCount;
     }

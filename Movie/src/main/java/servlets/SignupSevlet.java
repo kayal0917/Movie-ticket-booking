@@ -1,12 +1,10 @@
-package com.chainsys.dao;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,21 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.chainsys.dao.ImpMovie;
 import com.chainsys.model.MoviePojo;
 
+
+
 /**
- * Servlet implementation class Readservlets
+ * Servlet implementation class SignupSevlet
  */
-@WebServlet("/Readservlets")
-public class Readservlets extends HttpServlet {
+@WebServlet("/SignupSevlet")
+public class SignupSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private List<MoviePojo> list = new ArrayList<>();
     MoviePojo details = new MoviePojo();
 	ImpMovie imp=new ImpMovie();
+
+       
     /**
-     * @see HttpServlet#HttpServlet()
+     * @see HttpServlet#HttpServlet(
      */
-    public Readservlets() {
+    public SignupSevlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,24 +41,26 @@ public class Readservlets extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw=response.getWriter();
-        String username = request.getParameter("username");
-        String email=request.getParameter("email");
+		PrintWriter out=response.getWriter();
+		HttpSession session=request.getSession();
+		System.out.println(session);
+		if(session != null)
+		{
+        String username = request.getParameter("userName");
+        details.setUsername(username);   
+        System.out.println(details.getUsername());
+        String email = request.getParameter("email");
+        details.setEmail(email);
         String password=request.getParameter("password");
-		try {
-			list=imp.retriveDetails();
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+        details.setPassword(password);
+        try {
+        	imp.Signupsevlet(details);
+        	response.sendRedirect("signinmovie.jsp");
+        }catch (Exception e) {
+			// TODO: handle exception
+        	e.printStackTrace();
 		}
-//      System.out.println(list);
-      System.out.println("Displayed successfully..");
-        request.setAttribute("list", list);
-         RequestDispatcher requestDispatcher=request.getRequestDispatcher("movie.jsp");
-         requestDispatcher.forward(request, response);
-
-	
+		}
 	}
 
 	/**
@@ -63,7 +68,7 @@ public class Readservlets extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		  
 	}
-
 }
+    

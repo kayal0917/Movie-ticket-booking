@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="com.chainsys.model.MoviePojo"%>
+<%@ page import="com.chainsys.model.Theaterpojo"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -46,22 +46,22 @@ m{
 	</td>
 	<table>	
 		<tr style="background:#9370DB">
-			<td>UserName</td>
-			<td>Email</td>
-			<td>Password</td>
+			<td>Theater id</td>
+			<td>Theater name</td>
+			<td>location</td>
 		</tr>
 		<%
-		ArrayList<MoviePojo> details = (ArrayList<MoviePojo>) request.getAttribute("list");
-		if (details != null && !details.isEmpty()) {
-			for (MoviePojo obj : details) {
+		ArrayList<Theaterpojo> theater = (ArrayList<Theaterpojo>) request.getAttribute("list");
+		if (theater != null && !theater.isEmpty()) {
+			for (Theaterpojo obj : theater) {
 		%>
 		<tr>
-			<td><%=obj.getUsername()%></td>
-			<td><%=obj.getEmail()%></td>
-			<td><%=obj.getPassword()%></td>
+			<td><%=obj.getTheaterid()%></td>
+			<td><%=obj.getTheatername()%></td>
+			<td><%=obj.getLocation()%></td>
 			<td>
 			<form action="Deleteservlets" method="get">
-    <input type="hidden" class="delete-button" value="<%= obj.getUsername() %>" name="username"> <!-- Changed name to username -->
+    <input type="hidden" class="delete-button" value="<%= obj.getTheatername() %>" name="username"> <!-- Changed name to username -->
     <input type="submit" class="delete-button" value="Delete" name="action">
 </form>
 

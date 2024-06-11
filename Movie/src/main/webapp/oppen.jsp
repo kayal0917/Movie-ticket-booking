@@ -19,7 +19,7 @@
     <form action="seat.jsp">
 
 		   <div class="movie-item">
-            <a href="oppen.jpg"><img class="movie-image" src="oppen.jpg" alt="brama" style="width: 100%;"></a>
+            <a href="oppen.jsp"><img class="movie-image" src="picture/oppen3.jpg" alt="oppen" style="width: 100%;"></a>
         </div>
               <input type="submit" value="Book Ticket" class="btn" />
         </div>
