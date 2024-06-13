@@ -35,18 +35,20 @@ m{
 </style>
 </head>
 <body>
-	<td>
-		<form action="Searchservlet" method="get">
-			<center>
-				<input type="hidden " class="search-button" placeholder="Search..."
-					name="query"> <input type="submit" value="Search">
-					
-			</center>
-		</form>
-	</td>
+	<div class="search">
+    <form action="Searchservlet" method="get">
+    <label for="type">Type:</label><br>
+  <select id="type" name="location" required autofocus>
+  <option value="Thoothukudi">Thoothukudi</option>
+    <option value="Ranipet">Ranipet</option>
+    <option value="Nagercoil">Nagarkovil</option>
+  
+  <!-- <option value="farmers">FARMER</option>
+  <option value="others">ADMIN</option -->>
+  </select>
+<input type="submit" value="SEARCH" class="button2">
 	<table>	
 		<tr style="background:#9370DB">
-			<td>Theater id</td>
 			<td>Theater name</td>
 			<td>location</td>
 		</tr>
@@ -56,7 +58,6 @@ m{
 			for (Theaterpojo obj : theater) {
 		%>
 		<tr>
-			<td><%=obj.getTheaterid()%></td>
 			<td><%=obj.getTheatername()%></td>
 			<td><%=obj.getLocation()%></td>
 			<td>

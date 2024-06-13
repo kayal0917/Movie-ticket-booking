@@ -68,6 +68,23 @@ public class Readservlets extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		PrintWriter pw=response.getWriter();
+		try {
+			list=imp.retrivetable();
+			System.out.println(list);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//      System.out.println(list);
+      System.out.println("Displayed");
+        request.setAttribute("list", list);
+         RequestDispatcher requestDispatcher=request.getRequestDispatcher("show.jsp");
+         requestDispatcher.forward(request, response);
+
+	
 	}
 
-}
+	}
+
+

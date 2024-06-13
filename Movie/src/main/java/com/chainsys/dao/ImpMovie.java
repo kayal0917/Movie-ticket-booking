@@ -162,12 +162,54 @@ public class ImpMovie implements InterMovie {
             theater.setTheatername(theatername);
             theater.setLocation(location);
             list.add(theater);
-			/*
-			 * 
-			 */        }
+			       }
+//        connection.close();
+        return list;
+    }
+	public List<Theaterpojo> retrivetable() throws ClassNotFoundException, SQLException 
+    {
+        List<Theaterpojo> list=new ArrayList<>();
+        Connection connection=MovieConnection.getConnection();
+        String select="SELECT theater_name FROM theater WHERE location='Thoothukudi'";
+        PreparedStatement prepareStatement=connection.prepareStatement(select);
+        ResultSet resultSet=prepareStatement.executeQuery();
+        while(resultSet.next())
+        {
+            String theatername=resultSet.getString(1);
+            String location=resultSet.getString(2);
+            Theaterpojo theater=new Theaterpojo();
+            theater.setTheatername(theatername);
+            theater.setLocation(location);
+            list.add(theater);
+			       }
 //        connection.close();
         return list;
     }
 
+	public List<Theaterpojo> search(Theaterpojo theater) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+        List<Theaterpojo> list=new ArrayList<>();
+        Connection connection=MovieConnection.getConnection();
+	        String select = "SELECT  theater_name FROM theater WHERE location=?";
+	        	
+	        PreparedStatement prepareStatement = connection.prepareStatement(select);
+	        prepareStatement.setString(1, theater.getLocation());
+	        ResultSet resultSet = prepareStatement.executeQuery();
+	        while (resultSet.next()) {
+	            String theatername = resultSet.getString(1);
+//	            String location = resultSet.getString(1);
+	            
+
+	            theater.setTheatername(theatername);
+//	            theater.setLocation(location);
+	           
+	            list.add(theater);
+	        }
+	        connection.close();
+	        return list;
+
+	    
+	
+	}
 
 }

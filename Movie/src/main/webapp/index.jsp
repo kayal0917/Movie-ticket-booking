@@ -101,7 +101,7 @@
             <label for="location">Location:</label>
             <select id="location" name="location" class="form-control" required>
                 <option value="">Location</option>
-                <option value="thoothukudi.jsp">Thoothukudi</option>
+                <option value="">Thoothukudi</option>
                 <option value="ranipet.jsp">Ranipet</option>
                 <option value="nagercoil.jsp">Nagercoil</option>
             </select>
